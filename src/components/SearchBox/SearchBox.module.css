@@ -1,0 +1,16 @@
+.searchContainer {
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+.searchText {
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.searchMessage {
+  text-align: left;
+  margin-top: 8px;
+}
