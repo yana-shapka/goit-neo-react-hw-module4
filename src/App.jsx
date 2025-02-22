@@ -1,58 +1,22 @@
-import {useState, useEffect} from 'react';
-import {Formik} from 'formik';
-import {nanoid} from 'nanoid';
-import ContactForm from './components/ContactForm/ContactForm';
-import ContactList from './components/ContactList/ContactList';
-import SearchBox from './components/SearchBox/SearchBox';
+import {useState} from 'react';
+import toast, {Toaster} from 'react-hot-toast';
+import SearchBar from './components/SearchBar/SearchBar';
+import ImageGallery from './components/ImageGallery/ImageGallery';
+import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 
 function App() {
-  const loadContacts = () => {
-    const storedContacts = localStorage.getItem('contacts');
-    return storedContacts ? JSON.parse(storedContacts) : [];
-  };
+  const [query, setQuery] = useState('');
 
-  const [contacts, setContacts] = useState(loadContacts());
-
-  const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-
-  const saveContact = newContact => {
-    setContacts(prevContacts => {
-      const updatedContacts = [...prevContacts, {...newContact, id: nanoid()}];
-      return updatedContacts;
-    });
-  };
-
-  const deleteContact = id => {
-    setContacts(prevContacts =>
-      prevContacts.filter(contact => contact.id !== id)
-    );
+  const handleSearchSubmit = newQuery => {
+    if (query === newQuery) return;
+    setQuery(newQuery);
   };
 
   return (
-    <div className="appWrapper">
-      <div className="formWrapper">
-        <h1>Phonebook</h1>
-        <ContactForm save={saveContact} />
-        <SearchBox
-          filter={filter}
-          setFilter={setFilter}
-          filteredContacts={filteredContacts}
-        />
-      </div>
-      <div className="listWrapper">
-        <ContactList
-          contacts={filteredContacts}
-          deleteContact={deleteContact}
-        />
-      </div>
+    <div className="appStyle">
+      <Toaster position="top-right" />
+      <SearchBar onSubmit={handleSearchSubmit} />
+      <ImageGallery query={query} />
     </div>
   );
 }
