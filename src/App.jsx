@@ -9,6 +9,7 @@ function App() {
 
   const handleSearchSubmit = newQuery => {
     if (query === newQuery) return;
+    setQuery('');
     setQuery(newQuery);
   };
 

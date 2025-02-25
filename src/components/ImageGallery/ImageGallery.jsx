@@ -58,7 +58,7 @@ const ImageGallery = ({query}) => {
         ))}
       </ul>
       {isLoading && <Loader />}
-      {images.length > 0 && images.length < totalResults && !isLoading && (
+      {images.length > 0 && !isLoading && (
         <LoadMoreBtn onClick={() => setPage(prev => prev + 1)} />
       )}
       {showModal && (

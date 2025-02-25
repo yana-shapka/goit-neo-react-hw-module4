@@ -26,6 +26,23 @@
   overflow: hidden;
 }
 
+@media (max-width: 900px) {
+  .imageModal {
+    min-height: 40vh;
+    height: auto;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1024px) {
+  .imageModal {
+    max-height: 70vh;
+  }
+
+  .fullImage {
+    max-height: 50vh;
+  }
+}
+
 .imageModal:focus {
   outline: none;
 }
