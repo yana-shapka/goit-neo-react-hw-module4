@@ -2,7 +2,6 @@ import {useState} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
 import SearchBar from './components/SearchBar/SearchBar';
 import ImageGallery from './components/ImageGallery/ImageGallery';
-import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 
 function App() {
   const [query, setQuery] = useState('');
